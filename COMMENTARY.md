@@ -24,3 +24,9 @@ A `Hand` represents the five `Card`s that a player holds.
 
 Comparing two hands can produce three outcomes: first hand wins, second hand wins or both hands are of equal strength.
 A `Hand` implements `java.lang.Comparable` to express this.
+
+#### Card
+
+A `Card` is defined by its value and suit.
+
+As there are fixed sets of possible suits and values, let's model them as enumerations.
