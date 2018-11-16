@@ -14,4 +14,13 @@ The abilities to get the total number of deals or to count wins of other players
 
 #### Deal
 
-A `Deal` represents hands that different players hold in a single round.
+A `Deal` represents `Hand`s that different players hold in a single round.
+
+We need to determine which hand wins, but we cannot do that in `Deal` without exposing the internals of a `Hand`, so let's delegate this responsibility.
+
+#### Hand
+
+A `Hand` represents the five `Card`s that a player holds.
+
+Comparing two hands can produce three outcomes: first hand wins, second hand wins or both hands are of equal strength.
+A `Hand` implements `java.lang.Comparable` to express this.
