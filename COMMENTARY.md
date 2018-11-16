@@ -97,3 +97,7 @@ If a card can only be in one hand at a time, hands like `FullHouse`, `ThreeOfAKi
 
 However, while comparing the remaining cards (kickers) as well adds a small amount of code, it also gives us flexibility to support more poker variants.
 Let's assume we might need that down the road and keep this code.
+
+## Step 3: Putting it all together
+
+With a quick implementation of input file parsing logic we verify that we get [the expected answer](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt).
