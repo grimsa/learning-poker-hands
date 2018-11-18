@@ -46,3 +46,35 @@ However, parsing strings is not the main concern of those classes.
 On top of that, while representing a `Card` as `"2H"` seems pretty generic, representing a `Hand` as `"2H 3H 4H 5H 6H"` feels quite specific to the format of provided input file.
 
 As this is a point of potential variability, let's better extract this logic into a separate `HandParser` class.
+
+### Approach 1: Chained comparators
+
+Let's extract comparison of each rank into its own `Comparator` and chain them together like this:
+
+```java
+    public int compareTo(final Hand other) {
+        return RoyalFlushComparator.INSTANCE
+                .thenComparing(StraightFlushComparator.INSTANCE)
+                .thenComparing(FourOfAKindComparator.INSTANCE)
+                .thenComparing(FullHouseComparator.INSTANCE)
+                .thenComparing(FlushComparator.INSTANCE)
+                .thenComparing(StraightComparator.INSTANCE)
+                .thenComparing(ThreeOfAKindComparator.INSTANCE)
+                .thenComparing(TwoPairsComparator.INSTANCE)
+                .thenComparing(OnePairComparator.INSTANCE)
+                .thenComparing(HighCardComparator.INSTANCE)
+                .compare(this, other);
+    }
+```
+
+Halfway through implementing it we see that some comparators are not isolated and actually depend on downstream comparators.
+
+For example, if both hands have two pairs of equal values, `TwoPairsComparator` only compares the pairs and then expects downstream `HighCardComparator` to determine the winner.
+However, the downstream `OnePairComparator` then has to be aware of such a case and not try to determine the winner based on one arbitrarily chosen pair.
+
+The dependence on downstream comparators could be removed without much trouble, but the code is also starting to show some smells:
+- coupling of responsibilities (determining if current comparator is the one to decide the winner + doing the actual comparison)
+- duplication
+- use of `null`s to indicate lack of value
+
+Let's look for a better approach.

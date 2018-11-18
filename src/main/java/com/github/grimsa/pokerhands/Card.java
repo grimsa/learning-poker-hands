@@ -1,7 +1,13 @@
 package com.github.grimsa.pokerhands;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.naturalOrder;
+import static java.util.Comparator.reverseOrder;
 
 final class Card {
     private final Value value;
@@ -66,6 +72,18 @@ final class Card {
                     .filter(value -> value.symbol == symbol)
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("Unknown symbol: " + symbol));
+        }
+
+        static Value maxIn(final Collection<Value> values) {
+            return values.stream().max(naturalOrder()).orElseThrow();
+        }
+
+        static Value minIn(final Collection<Value> values) {
+            return values.stream().min(naturalOrder()).orElseThrow();
+        }
+
+        static List<Value> sortedDescending(final Collection<Value> values) {
+            return values.stream().sorted(reverseOrder()).collect(Collectors.toUnmodifiableList());
         }
     }
 
