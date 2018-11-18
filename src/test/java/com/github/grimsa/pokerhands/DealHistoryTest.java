@@ -9,7 +9,7 @@ final class DealHistoryTest {
     void dealHistory_projectEulerDataset_correctResults() {
         final var dealHistory = new DealHistory(
                 new TwoPlayerDealsSupplier(
-                        "p054_poker.txt",
+                        new ClasspathFileReader("p054_poker.txt"),
                         new HandParser(new FiveCardHandFactory())
                 )
         );

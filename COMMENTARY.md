@@ -101,3 +101,7 @@ Let's assume we might need that down the road and keep this code.
 ## Step 3: Putting it all together
 
 With a quick implementation of input file parsing logic we verify that we get [the expected answer](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt).
+
+As we revisit the quickly implemented `TwoPlayerDealsSupplier`, we notice it has two responsibilities we can separate:
+1. reading a file and producing a list of lines (extract into a generic `ClasspathFileReader`)
+1. producing `Deal` objects from these lines (keep in `TwoPlayerDealsSupplier`)
