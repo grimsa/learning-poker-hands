@@ -3,17 +3,25 @@ package com.github.grimsa.pokerhands;
 import com.github.grimsa.pokerhands.Card.Suit;
 import com.github.grimsa.pokerhands.Card.Value;
 
+import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 final class HandParser implements Function<String, Hand> {
+    private final Function<Set<Card>, Hand> handFactory;
+
+    HandParser(final Function<Set<Card>, Hand> handFactory) {
+        this.handFactory = Objects.requireNonNull(handFactory);
+    }
+
     @Override
     public Hand apply(String handAsString) {
         final var cards = Stream.of(handAsString.split(" "))
                 .map(this::parseCard)
                 .collect(Collectors.toUnmodifiableSet());
-        return new Hand(cards);
+        return handFactory.apply(cards);
     }
 
     private Card parseCard(final String cardString) {

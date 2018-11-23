@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class HandTest {
-    private final HandParser handParser = new HandParser();
+    private final HandParser handParser = new HandParser(new FiveCardHandFactory());
 
     @Test
     void sort_differentRanks_sortedByRank() {

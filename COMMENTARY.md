@@ -78,3 +78,22 @@ The dependence on downstream comparators could be removed without much trouble, 
 - use of `null`s to indicate lack of value
 
 Let's look for a better approach.
+
+### Approach 2: A class for each rank
+
+As we have distinct ranks in a game of poker, we should have corresponding types in our model as well.
+
+A curious case here is the Royal Flush. It could be both a separate type or just one case of a Straight Flush.
+But as we only care about ranking of hands and the same rules apply to both ranks, let's go with the latter approach for simplicity.
+
+As we implement this approach, we see that the responsibilities are now better separated:
+1. determining the rank of a hand (`FiveCardHandFactory`)
+1. comparing two hands (every `Hand` subtype)
+
+Another benefit is that every `Hand` subtype now holds just the data it needs, which makes individual comparison logic easier to understand.
+
+#### A note on further simplifying
+If a card can only be in one hand at a time, hands like `FullHouse`, `ThreeOfAKind` or `FourOfAKind` could store just one `Value`.
+
+However, while comparing the remaining cards (kickers) as well adds a small amount of code, it also gives us flexibility to support more poker variants.
+Let's assume we might need that down the road and keep this code.
