@@ -1,5 +1,9 @@
 package com.github.grimsa.pokerhands;
 
+import com.github.grimsa.generic.ClasspathFileReader;
+import com.github.grimsa.pokerhands.deal.TwoPlayerDealsSupplier;
+import com.github.grimsa.pokerhands.hand.FiveCardHandFactory;
+import com.github.grimsa.pokerhands.hand.HandParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

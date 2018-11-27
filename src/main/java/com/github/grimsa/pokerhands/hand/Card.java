@@ -1,4 +1,4 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.hand;
 
 import java.util.Collection;
 import java.util.List;

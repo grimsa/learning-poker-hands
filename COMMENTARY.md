@@ -105,3 +105,32 @@ With a quick implementation of input file parsing logic we verify that we get [t
 As we revisit the quickly implemented `TwoPlayerDealsSupplier`, we notice it has two responsibilities we can separate:
 1. reading a file and producing a list of lines (extract into a generic `ClasspathFileReader`)
 1. producing `Deal` objects from these lines (keep in `TwoPlayerDealsSupplier`)
+
+## Step 4: Leveraging packaging
+
+First we separate the generic classes from those having anything to do with poker.
+
+Then we follow the [reader-friendly packaging guidelines](https://javadevguy.wordpress.com/2017/12/18/happy-packaging/):
+> 1. Packages should never depend on sub-packages
+> 1. Sub-packages should not introduce new concepts, just more details
+
+The resulting structure is this:
+```
+- <root package>
+    - generic
+        - ClasspathFileReader
+        - Comparators
+    - pokerhands
+        - deal
+            - TwoPlayerDealsSupplier
+        - hand
+            - Card
+            - HandParser
+            - FiveCardHandFactory
+        - Deal
+        - DealHistory
+        - Hand
+```
+
+- `generic` package contains classes that could be reused in other projects or replaced by some general-purpose utility library
+- `pokerhands` package contains classes representing the main concepts in the problem domain and subpackages encapsulating the secondary details

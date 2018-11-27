@@ -4,10 +4,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-final class Deal {
+public final class Deal {
     private final List<Hand> playerHands;
 
-    Deal(final List<Hand> playerHands) {
+    public Deal(final List<Hand> playerHands) {
         this.playerHands = Objects.requireNonNull(playerHands);
     }
 

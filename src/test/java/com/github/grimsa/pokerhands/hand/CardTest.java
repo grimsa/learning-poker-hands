@@ -1,4 +1,4 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.hand;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Set;
 
-import static com.github.grimsa.pokerhands.Card.Value.*;
+import static com.github.grimsa.pokerhands.hand.Card.Value.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 final class CardTest {

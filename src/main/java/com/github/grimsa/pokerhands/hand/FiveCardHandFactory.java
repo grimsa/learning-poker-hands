@@ -1,16 +1,17 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.hand;
 
-import com.github.grimsa.pokerhands.Card.Value;
+import com.github.grimsa.pokerhands.Hand;
+import com.github.grimsa.pokerhands.hand.Card.Value;
 
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.github.grimsa.pokerhands.FiveCardHandFactory.BaseHand.Rank.*;
-import static com.github.grimsa.pokerhands.Comparators.comparingListElements;
+import static com.github.grimsa.generic.Comparators.comparingListElements;
+import static com.github.grimsa.pokerhands.hand.FiveCardHandFactory.BaseHand.Rank.*;
 
-final class FiveCardHandFactory implements Function<Set<Card>, Hand> {
+public final class FiveCardHandFactory implements Function<Set<Card>, Hand> {
     @Override
     public Hand apply(final Set<Card> cards) {
         if (cards.size() != 5) {

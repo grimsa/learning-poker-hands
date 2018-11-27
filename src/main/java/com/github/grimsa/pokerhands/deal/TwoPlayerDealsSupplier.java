@@ -1,4 +1,7 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.deal;
+
+import com.github.grimsa.pokerhands.Deal;
+import com.github.grimsa.pokerhands.Hand;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,11 +9,11 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-final class TwoPlayerDealsSupplier implements Supplier<List<Deal>> {
+public final class TwoPlayerDealsSupplier implements Supplier<List<Deal>> {
     private final Supplier<List<String>> dealFileLinesSupplier;
     private final Function<String, Hand> handParser;
 
-    TwoPlayerDealsSupplier(final Supplier<List<String>> dealFileLinesSupplier, final Function<String, Hand> handParser) {
+    public TwoPlayerDealsSupplier(final Supplier<List<String>> dealFileLinesSupplier, final Function<String, Hand> handParser) {
         this.dealFileLinesSupplier = Objects.requireNonNull(dealFileLinesSupplier);
         this.handParser = Objects.requireNonNull(handParser);
     }

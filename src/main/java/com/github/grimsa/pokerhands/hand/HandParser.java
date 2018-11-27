@@ -1,7 +1,8 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.hand;
 
-import com.github.grimsa.pokerhands.Card.Suit;
-import com.github.grimsa.pokerhands.Card.Value;
+import com.github.grimsa.pokerhands.Hand;
+import com.github.grimsa.pokerhands.hand.Card.Suit;
+import com.github.grimsa.pokerhands.hand.Card.Value;
 
 import java.util.Objects;
 import java.util.Set;
@@ -9,10 +10,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-final class HandParser implements Function<String, Hand> {
+public final class HandParser implements Function<String, Hand> {
     private final Function<Set<Card>, Hand> handFactory;
 
-    HandParser(final Function<Set<Card>, Hand> handFactory) {
+    public HandParser(final Function<Set<Card>, Hand> handFactory) {
         this.handFactory = Objects.requireNonNull(handFactory);
     }
 

@@ -1,5 +1,6 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.pokerhands.hand;
 
+import com.github.grimsa.pokerhands.Hand;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

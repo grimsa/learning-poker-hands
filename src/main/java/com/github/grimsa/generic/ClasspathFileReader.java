@@ -1,4 +1,4 @@
-package com.github.grimsa.pokerhands;
+package com.github.grimsa.generic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,10 +10,10 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-final class ClasspathFileReader implements Supplier<List<String>> {
+public final class ClasspathFileReader implements Supplier<List<String>> {
     private final String path;
 
-    ClasspathFileReader(final String path) {
+    public ClasspathFileReader(final String path) {
         this.path = Objects.requireNonNull(path);
     }
 
