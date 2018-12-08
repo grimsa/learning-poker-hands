@@ -1,6 +1,7 @@
 package com.github.grimsa.pokerhands;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 
 final class Card {
     private final Value value;
@@ -40,25 +41,51 @@ final class Card {
     }
 
     enum Value {
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        EIGHT,
-        NINE,
-        TEN,
-        JACK,
-        QUEEN,
-        KING,
-        ACE
+        TWO('2'),
+        THREE('3'),
+        FOUR('4'),
+        FIVE('5'),
+        SIX('6'),
+        SEVEN('7'),
+        EIGHT('8'),
+        NINE('9'),
+        TEN('T'),
+        JACK('J'),
+        QUEEN('Q'),
+        KING('K'),
+        ACE('A');
+
+        private final char symbol;
+
+        Value(char symbol) {
+            this.symbol = symbol;
+        }
+
+        static Value fromSymbol(char symbol) {
+            return Stream.of(values())
+                    .filter(value -> value.symbol == symbol)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Unknown symbol: " + symbol));
+        }
     }
 
     enum Suit {
-        CLUB,
-        DIAMOND,
-        HEART,
-        SPADE
+        CLUB('C'),
+        DIAMOND('D'),
+        HEART('H'),
+        SPADE('S');
+
+        private final char symbol;
+
+        Suit(char symbol) {
+            this.symbol = symbol;
+        }
+
+        static Suit fromSymbol(char symbol) {
+            return Stream.of(values())
+                    .filter(suit -> suit.symbol == symbol)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Unknown symbol: " + symbol));
+        }
     }
 }

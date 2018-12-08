@@ -30,3 +30,19 @@ A `Hand` implements `java.lang.Comparable` to express this.
 A `Card` is defined by its value and suit.
 
 As there are fixed sets of possible suits and values, let's model them as enumerations.
+
+## Step 2: Implementing hand ranking
+
+### Preparation: Adding tests
+
+Let's add some tests before implementing hand ranking.
+
+It is convenient to write tests using the same concise `Hand` representation as in the provided input file. It also lets us reuse the same parsing logic.
+
+#### A note on parsing hands
+
+We can consider adding `Hand(String)` and `Card(String)` constructors to perform the parsing there.
+However, parsing strings is not the main concern of those classes.
+On top of that, while representing a `Card` as `"2H"` seems pretty generic, representing a `Hand` as `"2H 3H 4H 5H 6H"` feels quite specific to the format of provided input file.
+
+As this is a point of potential variability, let's better extract this logic into a separate `HandParser` class.
