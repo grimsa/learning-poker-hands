@@ -134,3 +134,21 @@ The resulting structure is this:
 
 - `generic` package contains classes that could be reused in other projects or replaced by some general-purpose utility library
 - `pokerhands` package contains classes representing the main concepts in the problem domain and subpackages encapsulating the secondary details
+
+## Step 5: Refactoring
+
+### Class names
+
+Let's take a closer look and apply ["Don't create verb classes"](http://wiki.c2.com/?DontCreateVerbClasses) advice:
+
+> By "Verb Classes", I mean classes whose names are really verbs in disguise. Things like Processor, Sender, Sorter, Listener.
+ [...] To me, it seems obvious: if you have a class called "Sender", it's procedural code in disguise. *What* is being "sent"?
+ Proper OO design would call for the thing being sent to be the class, and a "send" method on that class to do the actual sending.
+
+Let's rename:
+- `ClasspathFileReader` -> `ClasspathFile`
+- `TwoPlayersDealsSupplier` -> `TwoPlayersDealsFactory`
+- `HandParser` -> `HandFromStringFactory`
+
+If we look at our class names after this refactoring, we see that we have much less variety.
+Essentially the only suffix we use is the `-Factory` which produces objects of some type and the classes of objects themselves.

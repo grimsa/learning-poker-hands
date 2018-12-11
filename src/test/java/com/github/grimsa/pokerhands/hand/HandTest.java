@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class HandTest {
-    private final HandParser handParser = new HandParser(new FiveCardHandFactory());
+    private final HandFromStringFactory handFromStringFactory = new HandFromStringFactory(new HandFromFiveCardsFactory());
 
     @Test
     void sort_differentRanks_sortedByRank() {
@@ -243,6 +243,6 @@ final class HandTest {
     }
 
     private Hand hand(final String handString) {
-        return handParser.apply(handString);
+        return handFromStringFactory.apply(handString);
     }
 }

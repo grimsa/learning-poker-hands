@@ -10,10 +10,10 @@ import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public final class ClasspathFileReader implements Supplier<List<String>> {
+public final class ClasspathFile implements Supplier<List<String>> {
     private final String path;
 
-    public ClasspathFileReader(final String path) {
+    public ClasspathFile(final String path) {
         this.path = Objects.requireNonNull(path);
     }
 

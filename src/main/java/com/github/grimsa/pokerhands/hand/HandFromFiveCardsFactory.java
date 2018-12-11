@@ -9,9 +9,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.github.grimsa.generic.Comparators.comparingListElements;
-import static com.github.grimsa.pokerhands.hand.FiveCardHandFactory.BaseHand.Rank.*;
+import static com.github.grimsa.pokerhands.hand.HandFromFiveCardsFactory.BaseHand.Rank.*;
 
-public final class FiveCardHandFactory implements Function<Set<Card>, Hand> {
+public final class HandFromFiveCardsFactory implements Function<Set<Card>, Hand> {
     @Override
     public Hand apply(final Set<Card> cards) {
         if (cards.size() != 5) {

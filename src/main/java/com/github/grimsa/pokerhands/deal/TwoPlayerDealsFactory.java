@@ -9,13 +9,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public final class TwoPlayerDealsSupplier implements Supplier<List<Deal>> {
+public final class TwoPlayerDealsFactory implements Supplier<List<Deal>> {
     private final Supplier<List<String>> dealFileLinesSupplier;
-    private final Function<String, Hand> handParser;
+    private final Function<String, Hand> handFactory;
 
-    public TwoPlayerDealsSupplier(final Supplier<List<String>> dealFileLinesSupplier, final Function<String, Hand> handParser) {
+    public TwoPlayerDealsFactory(final Supplier<List<String>> dealFileLinesSupplier, final Function<String, Hand> handFactory) {
         this.dealFileLinesSupplier = Objects.requireNonNull(dealFileLinesSupplier);
-        this.handParser = Objects.requireNonNull(handParser);
+        this.handFactory = Objects.requireNonNull(handFactory);
     }
 
     @Override
@@ -39,6 +39,6 @@ public final class TwoPlayerDealsSupplier implements Supplier<List<Deal>> {
     }
 
     private Hand parse(final String cardsAsString) {
-        return handParser.apply(cardsAsString);
+        return handFactory.apply(cardsAsString);
     }
 }

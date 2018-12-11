@@ -1,9 +1,9 @@
 package com.github.grimsa.pokerhands;
 
-import com.github.grimsa.generic.ClasspathFileReader;
-import com.github.grimsa.pokerhands.deal.TwoPlayerDealsSupplier;
-import com.github.grimsa.pokerhands.hand.FiveCardHandFactory;
-import com.github.grimsa.pokerhands.hand.HandParser;
+import com.github.grimsa.generic.ClasspathFile;
+import com.github.grimsa.pokerhands.deal.TwoPlayerDealsFactory;
+import com.github.grimsa.pokerhands.hand.HandFromFiveCardsFactory;
+import com.github.grimsa.pokerhands.hand.HandFromStringFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,9 +12,9 @@ final class DealHistoryTest {
     @Test
     void dealHistory_projectEulerDataset_correctResults() {
         final var dealHistory = new DealHistory(
-                new TwoPlayerDealsSupplier(
-                        new ClasspathFileReader("p054_poker.txt"),
-                        new HandParser(new FiveCardHandFactory())
+                new TwoPlayerDealsFactory(
+                        new ClasspathFile("p054_poker.txt"),
+                        new HandFromStringFactory(new HandFromFiveCardsFactory())
                 )
         );
 

@@ -10,11 +10,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class HandParser implements Function<String, Hand> {
-    private final Function<Set<Card>, Hand> handFactory;
+public final class HandFromStringFactory implements Function<String, Hand> {
+    private final Function<Set<Card>, Hand> handFromCardsFactory;
 
-    public HandParser(final Function<Set<Card>, Hand> handFactory) {
-        this.handFactory = Objects.requireNonNull(handFactory);
+    public HandFromStringFactory(final Function<Set<Card>, Hand> handFromCardsFactory) {
+        this.handFromCardsFactory = Objects.requireNonNull(handFromCardsFactory);
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class HandParser implements Function<String, Hand> {
         final var cards = Stream.of(handAsString.split(" "))
                 .map(this::parseCard)
                 .collect(Collectors.toUnmodifiableSet());
-        return handFactory.apply(cards);
+        return handFromCardsFactory.apply(cards);
     }
 
     private Card parseCard(final String cardString) {
